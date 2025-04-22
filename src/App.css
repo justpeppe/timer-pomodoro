@@ -1,38 +1,117 @@
+/* Importazione del font Poppins da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Stili generali dell'applicazione */
+* {
+  margin: 0;                  /* Rimuove i margini predefiniti */
+  padding: 0;                 /* Rimuove i padding predefiniti */
+  box-sizing: border-box;     /* Include padding e bordi nella larghezza/altezza degli elementi */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;  /* Utilizza il font Poppins come font principale */
+  background-color: #121212;           /* Colore di sfondo scuro per la pagina */
+  color: #e0e0e0;                      /* Colore del testo chiaro per il tema scuro */
+  display: flex;                       /* Imposta il display come flex */
+  justify-content: center;             /* Centra orizzontalmente il contenuto */
+  align-items: center;                 /* Centra verticalmente il contenuto */
+  min-height: 100vh;                   /* Altezza minima pari all'altezza della viewport */
+}
+
 .App {
-  text-align: center;
+  text-align: center;                  /* Centra il testo all'interno dell'app */
+  background-color: #1e1e1e;           /* Sfondo scuro per il contenitore principale */
+  border-radius: 10px;                 /* Angoli arrotondati */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Ombra più pronunciata per effetto profondità */
+  padding: 2rem;                       /* Spaziatura interna */
+  width: 100%;                         /* Larghezza al 100% del contenitore */
+  max-width: 400px;                    /* Larghezza massima di 400px */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Stile del titolo principale */
+h1 {
+  color: #ff6b6b;                      /* Colore rosso-arancio per il titolo principale */
+  margin-bottom: 1.5rem;               /* Margine inferiore */
+  font-size: 2rem;                     /* Dimensione del font */
+  font-weight: 600;                    /* Spessore del font semi-grassetto */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Stili del componente Timer */
+.timer {
+  margin: 2rem 0;                      /* Margine verticale */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.timer h2 {
+  font-size: 3.5rem;                   /* Dimensione grande per il tempo */
+  font-weight: 700;                    /* Font grassetto */
+  color: #efefef;                      /* Colore del timer (bianco-grigio chiaro) */
+  font-family: 'Poppins', sans-serif;  /* Applica anche qui il font Poppins */
 }
 
-.App-link {
-  color: #61dafb;
+/* Stili del componente Controls */
+.controls {
+  display: grid;                       /* Layout a griglia */
+  grid-template-columns: 1fr 1fr;      /* Due colonne di uguale larghezza */
+  grid-gap: 0.8rem;                    /* Spazio tra i pulsanti */
+  margin-top: 1.5rem;                  /* Margine superiore */
+  width: 100%;                         /* Larghezza al 100% del contenitore */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  background-color: #ff6b6b;           /* Colore di sfondo rosso-arancio per i pulsanti */
+  color: #121212;                      /* Testo scuro sui pulsanti */
+  border: none;                        /* Nessun bordo */
+  border-radius: 4px;                  /* Angoli leggermente arrotondati */
+  padding: 0.8rem 0;                   /* Spaziatura verticale, orizzontale flessibile */
+  font-size: 0.9rem;                   /* Dimensione del testo */
+  font-weight: 600;                    /* Spessore del font semi-grassetto */
+  font-family: 'Poppins', sans-serif;  /* Applica il font Poppins ai pulsanti */
+  cursor: pointer;                     /* Cambia il cursore al passaggio del mouse */
+  transition: background-color 0.3s, transform 0.2s;  /* Transizione fluida */
+  width: 100%;                         /* Occupa tutta la larghezza della cella */
+  height: 2.8rem;                      /* Altezza fissa per tutti i pulsanti */
+  display: flex;                       /* Layout flessibile per il testo */
+  justify-content: center;             /* Centra orizzontalmente il testo */
+  align-items: center;                 /* Centra verticalmente il testo */
+}
+
+button:hover {
+  transform: translateY(-2px);         /* Leggero effetto di sollevamento */
+  filter: brightness(90%);             /* Scurisce qualsiasi pulsante quando ci si passa sopra */
+}
+
+button:active {
+  transform: translateY(0);            /* Riporta alla posizione originale quando cliccato */
+}
+
+/* Stili specifici per i diversi tipi di pulsanti */
+button:nth-child(1) {                  /* Pulsante Avvia/Pausa */
+  background-color: #ff6b6b;           /* Rosso-arancio */
+  color: #121212;                      /* Testo scuro */
+}
+
+button:nth-child(2) {                  /* Pulsante Reset */
+  background-color: #505050;           /* Grigio scuro */
+  color: #e0e0e0;                      /* Testo chiaro */
+}
+
+button:nth-child(3) {                  /* Pulsante Pausa breve */
+  background-color: #61ff4c;           /* Verde */
+  color: #121212;                      /* Testo scuro */
+}
+
+button:nth-child(4) {                  /* Pulsante Pomodoro */
+  background-color: #66c9ff;           /* Azzurro */
+  color: #121212;                      /* Testo scuro */
+}
+
+/* Stili per indicare la modalità (lavoro/pausa) */
+.work-mode {
+  background-color: #1e1e1e;           /* Sfondo standard per la modalità lavoro */
+  border-left: 4px solid #ff6b6b;      /* Bordo sinistro rosso-arancio per la modalità lavoro */
+}
+
+.break-mode {
+  background-color: #1a2634;           /* Sfondo blu scuro per la modalità pausa */
+  border-left: 4px solid #4cc2ff;      /* Bordo sinistro azzurro per la modalità pausa */
 }
